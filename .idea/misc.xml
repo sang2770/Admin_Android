@@ -6,12 +6,18 @@
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable-v24/layout.xml" value="0.2203125" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable/border.xml" value="0.2203125" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable/header.xml" value="0.2046875" />
+        <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.2203125" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable/layout_button.xml" value="0.2203125" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable/layout_spinner.xml" value="0.2203125" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable/navigation.xml" value="0.2203125" />
+        <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable/shape_left.xml" value="0.2203125" />
+        <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable/shape_panel.xml" value="0.2203125" />
+        <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/drawable/shape_right.xml" value="1.2714285714285714" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/layout/activity_addmovie.xml" value="0.20416666666666666" />
+        <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/layout/activity_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/layout/activity_main_1.xml" value="0.20416666666666666" />
+        <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/layout/activity_splash.xml" value="0.18" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/layout/item_movie.xml" value="0.20416666666666666" />
         <entry key="..\:/Ki2-Nam3/ThietBiDiDong/AdminMovie/app/src/main/res/menu/menu_bottom.xml" value="0.20416666666666666" />
       </map>

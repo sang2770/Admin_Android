@@ -1,4 +1,4 @@
-package com.example.adminmovie;
+package com.example.btlon_movie;
 
 import android.content.Context;
 import android.content.DialogInterface;

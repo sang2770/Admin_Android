@@ -18,20 +18,20 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.052"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            app:srcCompat="@drawable/logo" />
 
         <TextView
             android:id="@+id/txtEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:text="Sang@gmail.com"
             android:textColor="@color/white"
             android:textSize="20dp"
@@ -45,7 +45,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="25dp"
             android:layout_marginBottom="20dp"
             android:text="Admin"
             android:textColor="@color/white"
@@ -64,11 +63,28 @@
             android:layout_marginStart="9dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.027"
+            app:layout_constraintHorizontal_bias="0.026"
             app:layout_constraintStart_toEndOf="@+id/txtType"
             app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-            app:layout_constraintVertical_bias="0.515"
+            app:layout_constraintVertical_bias="0.409"
             app:srcCompat="@drawable/ic_baseline_star_24" />
+
+        <ImageView
+            android:clickable="true"
+            android:id="@+id/BtnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="126dp"
+            android:layout_marginBottom="26dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/txtEmail"
+            app:srcCompat="@drawable/ic_baseline_exit_to_app_24" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -86,13 +102,10 @@
             android:padding="5dp"
             android:textSize="20dp"
             android:textColor="@color/black"/>
-
         <ListView
             android:layout_width="match_parent"
             android:layout_height="514dp"
             android:padding="5dp">
-
-
         </ListView>
     </LinearLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView

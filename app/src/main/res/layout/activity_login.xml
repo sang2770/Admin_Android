@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".LoginActivity">
+    <RelativeLayout
+        android:id="@+id/Header"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/logo" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/ShapeLeft"
+        app:layout_constraintTop_toBottomOf="@+id/Header"
+        android:layout_width="150dp"
+        android:layout_height="400dp"
+        android:background="@drawable/shape_left"
+
+        tools:ignore="MissingConstraints" />
+
+    <RelativeLayout
+        android:id="@+id/ShapeRight"
+        android:layout_width="150dp"
+        android:layout_height="400dp"
+        android:background="@drawable/shape_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Header"
+        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_margin="50dp"
+        android:paddingTop="50dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:orientation="vertical"
+        android:background="@drawable/shape_panel"
+        app:layout_constraintTop_toBottomOf="@+id/Header"
+        tools:layout_editor_absoluteX="50dp" >
+        <EditText
+            android:textColor="@color/black"
+            android:id="@+id/Email"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Email"/>
+        <EditText
+            android:textColor="@color/black"
+            android:inputType="textPassword"
+            android:id="@+id/Password"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:hint="Mật khẩu"/>
+        <Button
+            android:id="@+id/BtnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:layout_marginTop="20dp"
+            android:text="Đăng nhập"/>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "18179320276",
+    "project_id": "btlandroid-8362e",
+    "storage_bucket": "btlandroid-8362e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:18179320276:android:850c07e5e99666c1cdce41",
+        "android_client_info": {
+          "package_name": "com.example.btlon_movie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "18179320276-dcal0pga7rv67it97o5nmg3o4pit99hn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWQv4DAfT9xelcXudJqn32QWGcDlQdVFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "18179320276-dcal0pga7rv67it97o5nmg3o4pit99hn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
