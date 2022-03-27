@@ -35,7 +35,6 @@ public class DropdownBox {
         TxtSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "Cle", Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder builder=new AlertDialog.Builder(context);
                 //set Title
                 builder.setTitle(Title);
