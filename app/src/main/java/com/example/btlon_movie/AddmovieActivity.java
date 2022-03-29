@@ -98,6 +98,11 @@ public class AddmovieActivity extends AppCompatActivity {
         BtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!Validated())
+                {
+                    Toast.makeText(AddmovieActivity.this, "Bạn nhập thiếu dữ liệu!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 progressDialog.show();
                 mDatabase.child("Movie").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
@@ -181,4 +186,22 @@ public class AddmovieActivity extends AppCompatActivity {
         Year.setText("");
     }
 
+    private boolean Validated() {
+        if (Name.getText().toString().trim().length() == 0 ||
+                Image.getText().toString().trim().length() == 0 ||
+                Description.getText().toString().trim().length() == 0 ||
+                Thumbnail.getText().toString().trim().length() == 0 ||
+                language.getText().toString().trim().length() == 0 ||
+                Link.getText().toString().trim().length() == 0 ||
+                Category.getResultSelect().size() == 0 || Country.getResultSelect().size() == 0
+        ) {
+            return false;
+        }
+        try {
+            int year = Integer.parseInt(Year.getText().toString().trim());
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
 }
