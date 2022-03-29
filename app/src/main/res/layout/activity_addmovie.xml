@@ -183,6 +183,7 @@
                         <com.google.android.material.textfield.TextInputEditText android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:id="@+id/InputYear"
                             android:hint="Năm" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -199,6 +200,13 @@
                             android:hint="Ngôn ngữ" />
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <CheckBox
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/Rating"
+                        android:text="Đánh giá"/>
+
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
@@ -208,84 +216,28 @@
                         <com.google.android.material.textfield.TextInputEditText android:textColor="@color/black"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Đánh giá" />
+                            android:id="@+id/Image"
+                            android:hint="Link ảnh nền" />
                     </com.google.android.material.textfield.TextInputLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:padding="5dp"
-                        android:text="Ảnh nền"
-                        android:textColor="@color/black" />
-
-                    <LinearLayout
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:layout_marginTop="10dp">
 
-                        <Button
-                            android:id="@+id/Rate"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@drawable/ic_baseline_camera_alt_24"
-                            android:backgroundTint="@color/white"
-                            tools:ignore="SpeakableTextPresentCheck" />
-
-                        <ImageView
-                            android:id="@+id/BtnBackground"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginRight="10dp"
-                            app:srcCompat="@drawable/logo" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:padding="5dp"
-                        android:text="Ảnh đại diện"
-                        android:textColor="@color/black" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/BtnAvatar"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@drawable/ic_baseline_camera_alt_24"
-                            android:backgroundTint="@color/white" />
-
-                        <ImageView
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_marginRight="10dp"
-                            app:srcCompat="@drawable/logo" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <Button
-                            android:layout_width="wrap_content"
+                        <com.google.android.material.textfield.TextInputEditText android:textColor="@color/black"
+                            android:layout_width="match_parent"
+                            android:id="@+id/Thumbnail"
                             android:layout_height="wrap_content"
-                            android:text="Thêm mới" />
-                    </LinearLayout>
+                            android:hint="Link ảnh chính" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <Button
+                        android:id="@+id/BtnAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="Thêm mới"/>
                 </LinearLayout>
 
             </ScrollView>
