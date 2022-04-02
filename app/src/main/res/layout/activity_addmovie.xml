@@ -5,23 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
     tools:context=".AddmovieActivity">
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        >
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/HeaderLayout"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_weight="1"
             android:background="@drawable/header">
 
             <ImageView
@@ -81,12 +75,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:layout_weight="7"
+            android:layout_height="430dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            android:layout_below="@+id/HeaderLayout"
+            android:id="@+id/LayoutInput"
+            >
 
             <TextView
                 android:layout_width="match_parent"
@@ -246,7 +239,9 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/Navigation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/LayoutInput"
             android:background="@color/primaryColor"
             app:itemBackground="@color/primaryColor"
             app:itemIconTint="@drawable/navigation"
@@ -254,9 +249,5 @@
             android:layout_gravity="end"
             app:menu="@menu/menu_bottom"
             />
-    </LinearLayout>
-
-
-
-
+    </RelativeLayout>
 </LinearLayout>
