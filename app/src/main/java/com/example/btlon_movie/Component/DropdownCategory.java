@@ -91,7 +91,7 @@ public class DropdownCategory {
             }
         });
     }
-    void Reset()
+    public void Reset()
     {
         ResultSelect.clear();
         checkSelected=new boolean[listItem.size()];
