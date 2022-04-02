@@ -55,10 +55,12 @@
             android:gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <ImageButton
-                android:background="@color/white"
+                android:id="@+id/btndelete"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
+                android:background="@color/white"
                 android:src="@drawable/ic_baseline_delete_sweep_24" />
 
         </LinearLayout>
