@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminMovie">
         <activity
-            android:name="com.example.btlon_movie.LoginActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.btlon_movie.AddmovieActivity"
+            android:name=".AddmovieActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.btlon_movie.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.btlon_movie.MainActivity"
+            android:name=".MainActivity"
             android:exported="false" />
     </application>
 

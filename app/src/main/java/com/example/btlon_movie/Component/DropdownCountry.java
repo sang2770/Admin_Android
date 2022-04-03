@@ -83,7 +83,7 @@ public class DropdownCountry {
             }
         });
     }
-    void Reset()
+    public void Reset()
     {
         ResultSelect.clear();
         checkSelected=new boolean[listItem.size()];

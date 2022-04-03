@@ -5,23 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10"
     tools:context=".AddmovieActivity">
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
+        >
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
+            android:id="@+id/HeaderLayout"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_weight="1"
             android:background="@drawable/header">
 
             <ImageView
@@ -81,12 +75,11 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="450dp"
-            android:layout_weight="7"
+            android:layout_height="430dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            android:layout_below="@+id/HeaderLayout"
+            android:id="@+id/LayoutInput"
+            >
 
             <TextView
                 android:layout_width="match_parent"
@@ -207,31 +200,45 @@
                         android:layout_marginTop="10dp"
                         android:id="@+id/Rating"
                         android:text="Đánh giá"/>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <com.google.android.material.textfield.TextInputEditText android:textColor="@color/black"
-                            android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/Image"
-                            android:hint="Link ảnh nền" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:text="Chọn ảnh chính:"/>
+
+                        <ImageView
+                            android:id="@+id/imageThumbnail"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp">
-
-                        <com.google.android.material.textfield.TextInputEditText android:textColor="@color/black"
-                            android:layout_width="match_parent"
-                            android:id="@+id/Thumbnail"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:hint="Link ảnh chính" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/black"
+                            android:text="Chọn ảnh nền:"/>
+
+                        <ImageView
+                            android:id="@+id/imageBackgrounc"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
+
+                    </LinearLayout>
+
                     <Button
                         android:id="@+id/BtnAdd"
                         android:layout_width="wrap_content"
@@ -246,7 +253,9 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/Navigation"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/LayoutInput"
             android:background="@color/primaryColor"
             app:itemBackground="@color/primaryColor"
             app:itemIconTint="@drawable/navigation"
@@ -254,9 +263,5 @@
             android:layout_gravity="end"
             app:menu="@menu/menu_bottom"
             />
-    </LinearLayout>
-
-
-
-
+    </RelativeLayout>
 </LinearLayout>

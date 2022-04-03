@@ -20,7 +20,8 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(int ID, String name, String image, String description, String thumbnail, String language, List<Category> category, List<Country> country, String rating, String link, int year) {
+    public Movie(int ID, String name, String image, String description, String thumbnail,
+                 String language, List<Category> category, List<Country> country, String rating, String link, int year) {
         this.ID = ID;
         Name = name;
         Image = image;
