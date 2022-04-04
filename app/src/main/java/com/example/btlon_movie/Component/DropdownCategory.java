@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.btlon_movie.Model.Category;
@@ -22,19 +23,40 @@ public class DropdownCategory {
     ArrayList<Category> listItem;
     Context context;
     String Title;
-
     public DropdownCategory(TextView txtSelect,
                             ArrayList<Category> listItem,
                             Context context,
-                            String Title) {
+                            String Title,ArrayList<Category> listSelected) {
         TxtSelect = txtSelect;
         ResultSelect = new ArrayList<Category>();
         this.listItem = listItem;
         this.checkSelected = new boolean[listItem.size()];
+        String selectCategory="";
+        if(listSelected!=null)
+        {
+            for (Category item: listSelected) {
+                int index=checkInArrayList(item.getID());
+                if(index!=-1)
+                {
+                    checkSelected[index]=true;
+                    selectCategory+=item.getName()+", ";
+                }
+            }
+        }
+        TxtSelect.setText(selectCategory);
         this.context = context;
         this.Title = Title;
     }
-
+    public int checkInArrayList(int Id )
+    {
+        for (int i=0;i<listItem.size();i++) {
+            if(listItem.get(i).getID()==Id)
+            {
+                return i ;
+            }
+        }
+        return -1;
+    }
     public ArrayList<Category> getResultSelect() {
         return ResultSelect;
     }

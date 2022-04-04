@@ -10,8 +10,8 @@ public class Movie {
     private String Description;
     private String thumbnail;
     private String language;
-    private List<Category> category=new ArrayList<>();
-    private List<Country> country=new ArrayList<>();
+    private List<Category> Category=new ArrayList<>();
+    private List<Country> Country=new ArrayList<>();
     private String rating;
     private String Link;
     private int Year;
@@ -28,15 +28,12 @@ public class Movie {
         Description = description;
         this.thumbnail = thumbnail;
         this.language = language;
-        this.category=category;
-        this.country=country;
+        this.Category=category;
+        this.Country=country;
         this.rating = rating;
         Link = link;
         Year = year;
     }
-
-
-
     public int getID() {
         return ID;
     }
@@ -86,18 +83,18 @@ public class Movie {
     }
 
     public List<Category> getCategory() {
-        return category;
+        return Category;
     }
-    public void setCategory(List<Category> category) {
-        this.category = category;
+    public void setCategory(ArrayList<Category> category) {
+        this.Category = category;
     }
 
     public List<Country> getCountry() {
-        return country;
+        return Country;
     }
 
-    public void setCountry(List<Country> country) {
-        this.country = country;
+    public void setCountry(ArrayList<Country> country) {
+        this.Country = country;
     }
 
     public String getRating() {
@@ -123,6 +120,15 @@ public class Movie {
     public void setYear(int year) {
         Year = year;
     }
-
+//    public String getString()
+//    {
+//        String a="";
+//        for (Category item: Category
+//        ) {
+//            a+=item!=null?item.toString()+"-":"null";
+//
+//        }
+//        return a;
+//    }
 
 }

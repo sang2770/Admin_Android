@@ -3,6 +3,9 @@ package com.example.btlon_movie;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.btlon_movie.Model.Category;
+import com.example.btlon_movie.Model.Country;
 import com.example.btlon_movie.Model.Movie;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -27,7 +32,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LstMovieAdapter extends BaseAdapter {
     //ngữ cảnh lớp context
@@ -74,6 +81,7 @@ public class LstMovieAdapter extends BaseAdapter {
             etDes=v.findViewById(R.id.DesMovie);
             etDes.setText(data.get(i).getDescription());
             ImageButton deletebtn=v.findViewById(R.id.btndelete);
+            ImageButton editBtn=v.findViewById(R.id.btnEdit);
             Context context = imgView.getContext();
             deletebtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -109,6 +117,18 @@ public class LstMovieAdapter extends BaseAdapter {
                     });
                     Confirm.show();
 
+                }
+            });
+
+            editBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Movie item=data.get(i);
+                    Intent intent=new Intent(context, AddmovieActivity.class);
+                    Bundle bundle=new Bundle();
+                    bundle.putInt("ID", item.getID());
+                    intent.putExtras(bundle);
+                    ((Activity)context).startActivityForResult(intent, 300);
                 }
             });
 

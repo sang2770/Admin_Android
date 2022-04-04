@@ -12,6 +12,14 @@ public class Category {
         this.Name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "ID=" + ID +
+                ", Name='" + Name + '\'' +
+                '}';
+    }
+
     public int getID() {
         return ID;
     }
@@ -27,4 +35,5 @@ public class Category {
     public void setName(String name) {
         Name = name;
     }
+
 }

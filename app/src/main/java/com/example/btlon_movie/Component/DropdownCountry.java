@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.btlon_movie.Model.Category;
 import com.example.btlon_movie.Model.Country;
 
 import java.util.ArrayList;
@@ -24,15 +25,38 @@ public class DropdownCountry {
     public DropdownCountry(TextView txtSelect,
                            ArrayList<Country> listItem,
                            Context context,
-                           String Title) {
+                           String Title, ArrayList<Country> listSelected) {
         TxtSelect = txtSelect;
         this.checkSelected =new boolean[listItem.size()];
         ResultSelect =new ArrayList<Country>();
         this.listItem = listItem;
         this.context = context;
+        this.checkSelected = new boolean[listItem.size()];
+        String selectCountry="";
+        if(listSelected!=null)
+        {
+            for (Country item: listSelected) {
+                int index=checkInArrayList(item.getID());
+                if(index!=-1)
+                {
+                    checkSelected[index]=true;
+                    selectCountry+=item.getName()+", ";
+                }
+            }
+        }
+        TxtSelect.setText(selectCountry);
         this.Title=Title;
     }
-
+    public int checkInArrayList(int Id )
+    {
+        for (int i=0;i<listItem.size();i++) {
+            if(listItem.get(i).getID()==Id)
+            {
+                return i ;
+            }
+        }
+        return -1;
+    }
     public ArrayList<Country> getResultSelect() {
         return ResultSelect;
     }

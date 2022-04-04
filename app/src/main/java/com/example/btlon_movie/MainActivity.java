@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -95,16 +96,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
     //lấy dữ liệu từ firebase
     private void getListdata(String keys,String child){
         database=FirebaseDatabase.getInstance();
         myref=database.getReference();
 
-        List<Category> DScategory=new ArrayList<>();
-        List<Country> DScountry=new ArrayList<>();
+//        ArrayList<Category> DScategory=new ArrayList<>();
+//        ArrayList<Country> DScountry=new ArrayList<>();
         myref.child(child).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -112,18 +111,20 @@ public class MainActivity extends AppCompatActivity {
                 for(DataSnapshot sanp:snapshot.getChildren()){
                     if(child=="Movie"){
                         Movie movie=sanp.getValue(Movie.class);
-                        DScategory.clear();
-                        DScountry.clear();
-                        for(int i=1;i<=sanp.child("Category").getChildrenCount();i++){
-                            Category category=sanp.child("Category/"+i).getValue(Category.class);
-                            DScategory.add(category);
-                        }
-                        for(int i=1;i<=sanp.child("Country").getChildrenCount();i++){
-                            Country country=sanp.child("Country/"+i).getValue(Country.class);
-                            DScountry.add(country);
-                        }
-                        movie.setCategory(DScategory);
-                        movie.setCountry(DScountry);
+
+//                        DScategory.clear();
+//                        DScountry.clear();
+//                        for(int i=1;i<=sanp.child("Category").getChildrenCount();i++){
+//                            Category category=sanp.child("Category/"+i).getValue(Category.class);
+//                            DScategory.add(category);
+//                        }
+//                        for(int i=1;i<=sanp.child("Country").getChildrenCount();i++){
+//                            Country country=sanp.child("Country/"+i).getValue(Country.class);
+//                            DScountry.add(country);
+//                        }
+//                        movie.setCategory(DScategory);
+//                        movie.setCountry(DScountry);
+//                        Log.d("movie", movie.getString());
 
                         if(keys==""){
                             arrLstMovie.add(movie);

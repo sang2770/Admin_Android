@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,6 +60,12 @@ public class AddmovieActivity extends AppCompatActivity {
     DropdownCountry Country;
     ProgressDialog progressDialog;
 
+    ArrayList<Category> categoryEdit;
+    ArrayList<Country> countryEdit;
+
+    // check update image
+    boolean checkBackground, checkThumbnail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +78,7 @@ public class AddmovieActivity extends AppCompatActivity {
     private void InitEvent() {
         //get List Category
         ListCategory = new ArrayList<Category>();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         mDatabase.child("Category").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -80,7 +87,7 @@ public class AddmovieActivity extends AppCompatActivity {
                     Category category = postSnapshot.getValue(Category.class);
                     ListCategory.add(category);
                 }
-                Category = new DropdownCategory(selectCategory, ListCategory, AddmovieActivity.this, "Chọn thể loại");
+                Category = new DropdownCategory(selectCategory, ListCategory, AddmovieActivity.this, "Chọn thể loại", categoryEdit);
                 Category.StartEvent();
             }
 
@@ -91,7 +98,7 @@ public class AddmovieActivity extends AppCompatActivity {
         });
         //get List Country
         ListCountry = new ArrayList<Country>();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("Country").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -99,7 +106,7 @@ public class AddmovieActivity extends AppCompatActivity {
                     Country country = postSnapshot.getValue(Country.class);
                     ListCountry.add(country);
                 }
-                Country = new DropdownCountry(selectCountry, ListCountry, AddmovieActivity.this, "Chọn quốc qia");
+                Country = new DropdownCountry(selectCountry, ListCountry, AddmovieActivity.this, "Chọn quốc qia", countryEdit);
                 Country.StartEvent();
             }
 
@@ -237,16 +244,19 @@ public class AddmovieActivity extends AppCompatActivity {
         {
             thumbnailUri=data.getData();
             imageThumbnail.setImageURI(thumbnailUri);
+            checkThumbnail=true;
         }
         if(requestCode==200 && resultCode==RESULT_OK
                 && data !=null && data.getData() != null)
         {
+            checkBackground=true;
             backgroundUri=data.getData();
             imageBackground.setImageURI(backgroundUri);
 
         }
     }
     private void InitUI() {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         selectCategory = findViewById(R.id.SelectCategory);
         selectCountry = findViewById(R.id.SelectCountry);
         Name = findViewById(R.id.Name);
@@ -258,11 +268,48 @@ public class AddmovieActivity extends AppCompatActivity {
         Link = findViewById(R.id.Link);
         Year = findViewById(R.id.InputYear);
         BtnAdd = findViewById(R.id.BtnAdd);
+        progressDialog = new ProgressDialog(this);
+        // Check update
+        Intent intent=getIntent();
+        Bundle bundle=intent.getExtras();
+
+        if(bundle!=null)
+        {
+            int Id=bundle.getInt("ID");
+            progressDialog.show();
+            mDatabase.child("Movie").child(String.valueOf(Id)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        progressDialog.dismiss();
+                        finish();
+                    }
+                    else {
+                        progressDialog.dismiss();
+                        Movie movie=task.getResult().getValue(Movie.class);
+                        Name.setText(movie.getName());
+                        Description.setText(movie.getDescription());
+                        language.setText(movie.getLanguage());
+                        if (movie.getRating().contains("Like")) {
+                            rating.setChecked(true);
+                        } else {
+                            rating.setChecked(false);
+                        }
+                        Link.setText(movie.getLink());
+                        Year.setText(String.valueOf(movie.getYear()));
+                        categoryEdit= (ArrayList<com.example.btlon_movie.Model.Category>) movie.getCategory();
+                        countryEdit= (ArrayList<com.example.btlon_movie.Model.Country>) movie.getCountry();
+                        new DownloadImageTask(imageThumbnail).execute(movie.getThumbnail());
+                        new DownloadImageTask(imageBackground).execute(movie.getImage());
+                        BtnAdd.setText("Cập nhật");
+                    }
+                }
+            });
+        }
         //Menu bottom
         menu = findViewById(R.id.Navigation);
         menu.setSelectedItemId(R.id.Create);
 
-        progressDialog = new ProgressDialog(this);
 
     }
 
@@ -290,8 +337,6 @@ public class AddmovieActivity extends AppCompatActivity {
         ) {
             return false;
         }
-        Log.d("thumbnail", thumbnailUri.toString());
-        Log.d("baclground", backgroundUri.toString());
         try {
             int year = Integer.parseInt(Year.getText().toString().trim());
         } catch (Exception e) {
