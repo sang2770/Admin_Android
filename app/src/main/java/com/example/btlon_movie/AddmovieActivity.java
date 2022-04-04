@@ -65,6 +65,8 @@ public class AddmovieActivity extends AppCompatActivity {
 
     // check update image
     boolean checkBackground, checkThumbnail;
+    private boolean checkUpdate;
+    private int Id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -164,77 +166,117 @@ public class AddmovieActivity extends AppCompatActivity {
             }
         });
     }
+    private  interface FirebaseCallBack{
+        void onCallBack();
+    }
+    private void uploadThumbnail()
+    {
+        if(checkThumbnail)
+        {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            String randomKeyThumbnail= UUID.randomUUID().toString();
+            StorageReference riversRef = storageRef.child("images/"+randomKeyThumbnail);
+            riversRef.putFile(thumbnailUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            riversRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    LinkThumbnail=uri.toString();
+                                    Log.d("ThumbnailUpload",LinkThumbnail);
+                                    if(checkBackground)
+                                    {
+                                        Log.d("checkBackground","Check");
+                                        uploadBackground();
+                                    }else{
+                                        uploadMovie();
+                                    }
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddmovieActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }else{
+            Log.d("checkBackground","Check_False");
+            uploadBackground();
+        }
+    }
+    private void uploadBackground()
+    {
+        Log.d("checkBackground","Begin");
+
+        if(checkBackground)
+        {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            String randomKeyBackground= UUID.randomUUID().toString();
+            StorageReference riversRef1 = storageRef.child("images/"+randomKeyBackground);
+            riversRef1.putFile(backgroundUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            riversRef1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    LinkBackground=uri.toString();
+                                    Log.d("BackgroundlUpload",LinkBackground);
+                                    uploadMovie();
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(AddmovieActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }else{
+            uploadMovie();
+        }
+    }
+    private void uploadMovie()
+    {
+        mDatabase.child("Movie").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Toast.makeText(AddmovieActivity.this, "Lấy dữ liệu không thành công", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.d("MovideUpload","Movie");
+
+                    SizeID = (int) task.getResult().getChildrenCount();
+                    Movie movie = new Movie(
+                            checkUpdate?Id:SizeID+1,
+                            Name.getText().toString().trim(),
+                            LinkBackground,
+                            Description.getText().toString().trim(),
+                            LinkThumbnail,
+                            language.getText().toString().trim(),
+                            Category.getResultSelect(),
+                            Country.getResultSelect(),
+                            rating.isChecked() ? "Like" : "",
+                            Link.getText().toString().trim(),
+                            Integer.valueOf(Year.getText().toString().trim())
+                    );
+                    mDatabase.child("Movie").child(checkUpdate?String.valueOf(String.valueOf(Id)):String.valueOf(SizeID+1)).setValue(movie);
+                    progressDialog.dismiss();
+                    ResetText();
+                    Toast.makeText(AddmovieActivity.this, checkUpdate?"Cập nhật thành công":"Thêm thành công", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
     private void upload() {
         progressDialog.show();
-        FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReference();
-        String randomKeyThumbnail= UUID.randomUUID().toString();
-        StorageReference riversRef = storageRef.child("images/"+randomKeyThumbnail);
-        riversRef.putFile(thumbnailUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        riversRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                LinkThumbnail=uri.toString();
-                                String randomKeyBackground= UUID.randomUUID().toString();
-                                StorageReference riversRef1 = storageRef.child("images/"+randomKeyBackground);
-                                riversRef1.putFile(backgroundUri)
-                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                            @Override
-                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                                riversRef1.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                                    @Override
-                                                    public void onSuccess(Uri uri) {
-                                                        LinkBackground=uri.toString();
-                                                        mDatabase.child("Movie").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                                                                if (!task.isSuccessful()) {
-                                                                    Toast.makeText(AddmovieActivity.this, "Lấy dữ liệu không thành công", Toast.LENGTH_SHORT).show();
-                                                                } else {
-                                                                    SizeID = (int) task.getResult().getChildrenCount();
-                                                                    Movie movie = new Movie(
-                                                                            SizeID + 1,
-                                                                            Name.getText().toString().trim(),
-                                                                            LinkBackground,
-                                                                            Description.getText().toString().trim(),
-                                                                            LinkThumbnail,
-                                                                            language.getText().toString().trim(),
-                                                                            Category.getResultSelect(),
-                                                                            Country.getResultSelect(),
-                                                                            rating.isChecked() ? "Like" : "",
-                                                                            Link.getText().toString().trim(),
-                                                                            Integer.valueOf(Year.getText().toString().trim())
-                                                                    );
-                                                                    mDatabase.child("Movie").child(String.valueOf(SizeID + 1)).setValue(movie);
-                                                                    progressDialog.dismiss();
-                                                                    ResetText();
-                                                                    Toast.makeText(AddmovieActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                                                                }
-                                                            }
-                                                        });
-                                                    }
-                                                });
-                                            }
-                                        })
-                                        .addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
-                                                Toast.makeText(AddmovieActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                            }
-                        });
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddmovieActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        uploadThumbnail();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -275,7 +317,8 @@ public class AddmovieActivity extends AppCompatActivity {
 
         if(bundle!=null)
         {
-            int Id=bundle.getInt("ID");
+            checkUpdate=true;
+            Id=bundle.getInt("ID");
             progressDialog.show();
             mDatabase.child("Movie").child(String.valueOf(Id)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
@@ -301,6 +344,10 @@ public class AddmovieActivity extends AppCompatActivity {
                         countryEdit= (ArrayList<com.example.btlon_movie.Model.Country>) movie.getCountry();
                         new DownloadImageTask(imageThumbnail).execute(movie.getThumbnail());
                         new DownloadImageTask(imageBackground).execute(movie.getImage());
+                        thumbnailUri=Uri.parse(movie.getThumbnail());
+                        backgroundUri=Uri.parse(movie.getImage());
+                        LinkBackground=movie.getImage();
+                        LinkThumbnail=movie.getThumbnail();
                         BtnAdd.setText("Cập nhật");
                     }
                 }
@@ -328,7 +375,7 @@ public class AddmovieActivity extends AppCompatActivity {
 
     private boolean Validated() {
         if (Name.getText().toString().trim().length() == 0 ||
-                thumbnailUri==null ||
+                thumbnailUri==null   ||
                 Description.getText().toString().trim().length() == 0 ||
                 backgroundUri==null ||
                 language.getText().toString().trim().length() == 0 ||

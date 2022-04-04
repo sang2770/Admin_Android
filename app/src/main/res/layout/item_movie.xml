@@ -22,7 +22,8 @@
             android:layout_width="80dp"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/loading" />
+
+            app:srcCompat="@drawable/lg" />
 
         <LinearLayout
             android:layout_width="180dp"

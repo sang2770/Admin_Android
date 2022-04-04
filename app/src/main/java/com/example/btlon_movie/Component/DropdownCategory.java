@@ -39,6 +39,7 @@ public class DropdownCategory {
                 if(index!=-1)
                 {
                     checkSelected[index]=true;
+                    ResultSelect.add(item);
                     selectCategory+=item.getName()+", ";
                 }
             }
