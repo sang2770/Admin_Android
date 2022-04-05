@@ -132,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         else{
-                            for(int i=0;i<sanp.child("Category").getChildrenCount();i++){
-                                String theloai=sanp.child("Category/"+i+"/Name").getValue().toString();
+                            for(int i=0;i<sanp.child("category").getChildrenCount();i++){
+                                String theloai=sanp.child("category/"+i+"/name").getValue().toString();
                                 if(theloai.equals(keys))
                                 {
                                     arrLstMovie.add(movie);

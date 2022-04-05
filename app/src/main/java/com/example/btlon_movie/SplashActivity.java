@@ -48,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
         }else{
             //Login
             mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.child("User").child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            mDatabase.child("user").child(user.getUid()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     progressDialog.dismiss();
