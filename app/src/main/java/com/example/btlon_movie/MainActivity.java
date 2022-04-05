@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         //tạo list movie
         arrLstMovie=new ArrayList<>();
         DSMovie=findViewById(R.id.lstMovie);
+        Log.d("Test", "StartMovie");
         getListdata("","movie");
 
         //tạo tab lọc category

@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -311,6 +312,9 @@ public class AddmovieActivity extends AppCompatActivity {
         Year = findViewById(R.id.InputYear);
         BtnAdd = findViewById(R.id.BtnAdd);
         progressDialog = new ProgressDialog(this);
+        //Menu bottom
+        menu = findViewById(R.id.Navigation);
+        menu.setSelectedItemId(R.id.Create);
         // Check update
         Intent intent=getIntent();
         Bundle bundle=intent.getExtras();
@@ -318,6 +322,9 @@ public class AddmovieActivity extends AppCompatActivity {
         if(bundle!=null)
         {
             checkUpdate=true;
+            Menu menuBottomItem = menu.getMenu();
+            menuBottomItem.findItem(R.id.Create).setTitle("Edit");
+            menuBottomItem.findItem(R.id.Create).setIcon(R.drawable.ic_baseline_edit_24);
             Id=bundle.getInt("ID");
             Log.d("Id", String.valueOf(Id));
             progressDialog.show();
@@ -358,9 +365,8 @@ public class AddmovieActivity extends AppCompatActivity {
                 }
             });
         }
-        //Menu bottom
-        menu = findViewById(R.id.Navigation);
-        menu.setSelectedItemId(R.id.Create);
+
+
 
 
     }
