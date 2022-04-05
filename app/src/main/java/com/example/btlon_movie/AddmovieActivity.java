@@ -81,7 +81,7 @@ public class AddmovieActivity extends AppCompatActivity {
         //get List Category
         ListCategory = new ArrayList<Category>();
 
-        mDatabase.child("Category").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("category").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
@@ -101,7 +101,7 @@ public class AddmovieActivity extends AppCompatActivity {
         //get List Country
         ListCountry = new ArrayList<Country>();
 //        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("Country").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("country").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
@@ -244,13 +244,13 @@ public class AddmovieActivity extends AppCompatActivity {
     }
     private void uploadMovie()
     {
-        mDatabase.child("Movie").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        mDatabase.child("movie").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
                     Toast.makeText(AddmovieActivity.this, "Lấy dữ liệu không thành công", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("MovideUpload","Movie");
+                    Log.d("MovideUpload","movie");
 
                     SizeID = (int) task.getResult().getChildrenCount();
                     Movie movie = new Movie(
@@ -266,7 +266,7 @@ public class AddmovieActivity extends AppCompatActivity {
                             Link.getText().toString().trim(),
                             Integer.valueOf(Year.getText().toString().trim())
                     );
-                    mDatabase.child("Movie").child(checkUpdate?String.valueOf(String.valueOf(Id)):String.valueOf(SizeID+1)).setValue(movie);
+                    mDatabase.child("movie").child(checkUpdate?String.valueOf(String.valueOf(Id)):String.valueOf(SizeID+1)).setValue(movie);
                     progressDialog.dismiss();
                     ResetText();
                     Toast.makeText(AddmovieActivity.this, checkUpdate?"Cập nhật thành công":"Thêm thành công", Toast.LENGTH_SHORT).show();
@@ -318,9 +318,9 @@ public class AddmovieActivity extends AppCompatActivity {
         if(bundle!=null)
         {
             checkUpdate=true;
-            Id=bundle.getInt("ID");
+            Id=bundle.getInt("id");
             progressDialog.show();
-            mDatabase.child("Movie").child(String.valueOf(Id)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            mDatabase.child("movie").child(String.valueOf(Id)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     if (!task.isSuccessful()) {

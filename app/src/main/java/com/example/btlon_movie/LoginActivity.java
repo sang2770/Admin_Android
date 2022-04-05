@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             String id = user.getUid();
                             mDatabase = FirebaseDatabase.getInstance().getReference();
-                            mDatabase.child("User").child(id).addValueEventListener(new ValueEventListener() {
+                            mDatabase.child("user").child(id).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     progressDialog.dismiss();

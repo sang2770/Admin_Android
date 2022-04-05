@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         //tạo list movie
         arrLstMovie=new ArrayList<>();
         DSMovie=findViewById(R.id.lstMovie);
-        getListdata("","Movie");
+        getListdata("","movie");
 
         //tạo tab lọc category
         Categorytab=findViewById(R.id.tabLayout);
@@ -57,29 +57,29 @@ public class MainActivity extends AppCompatActivity {
                 switch (tab.getPosition()){
                     case 0:
                         arrLstMovie.clear();
-                        getListdata("","Movie");
+                        getListdata("","movie");
                         break;
                     case 1:
                         arrLstMovie.clear();
-                        getListdata("Action","Movie");
+                        getListdata("Action","movie");
 
                         break;
                     case 2:
 
                         arrLstMovie.clear();
-                        getListdata("Drama","Movie");
+                        getListdata("Drama","movie");
                         break;
                     case 3:
                         arrLstMovie.clear();
-                        getListdata("Horror","Movie");
+                        getListdata("Horror","movie");
                         break;
                     case 4:
                         arrLstMovie.clear();
-                        getListdata("Cartoon","Movie");
+                        getListdata("Cartoon","movie");
                         break;
                     case 5:
                         arrLstMovie.clear();
-                        getListdata("Adventure","Movie");
+                        getListdata("Adventure","movie");
                         break;
                 }
 
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for(DataSnapshot sanp:snapshot.getChildren()){
-                    if(child=="Movie"){
+                    if(child=="movie"){
                         Movie movie=sanp.getValue(Movie.class);
 
 //                        DScategory.clear();
