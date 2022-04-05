@@ -124,6 +124,7 @@ public class LstMovieAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View view) {
                     Movie item=data.get(i);
+
                     Intent intent=new Intent(context, AddmovieActivity.class);
                     Bundle bundle=new Bundle();
                     bundle.putInt("ID", item.getID());

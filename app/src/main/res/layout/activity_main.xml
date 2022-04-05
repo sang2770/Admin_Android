@@ -156,6 +156,7 @@
         </com.google.android.material.tabs.TabLayout>
 
         <ListView
+            android:background="@color/white"
             android:id="@+id/lstMovie"
             android:layout_width="match_parent"
             android:layout_height="350dp"

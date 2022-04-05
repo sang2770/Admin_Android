@@ -318,7 +318,8 @@ public class AddmovieActivity extends AppCompatActivity {
         if(bundle!=null)
         {
             checkUpdate=true;
-            Id=bundle.getInt("id");
+            Id=bundle.getInt("ID");
+            Log.d("Id", String.valueOf(Id));
             progressDialog.show();
             mDatabase.child("movie").child(String.valueOf(Id)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
@@ -330,24 +331,28 @@ public class AddmovieActivity extends AppCompatActivity {
                     else {
                         progressDialog.dismiss();
                         Movie movie=task.getResult().getValue(Movie.class);
-                        Name.setText(movie.getName());
-                        Description.setText(movie.getDescription());
-                        language.setText(movie.getLanguage());
-                        if (movie.getRating().contains("Like")) {
-                            rating.setChecked(true);
-                        } else {
-                            rating.setChecked(false);
+                        if(movie!=null)
+                        {
+                            Name.setText(movie.getName());
+                            Description.setText(movie.getDescription());
+                            language.setText(movie.getLanguage());
+                            if (movie.getRating().contains("Like")) {
+                                rating.setChecked(true);
+                            } else {
+                                rating.setChecked(false);
+                            }
+                            Link.setText(movie.getLink());
+                            Year.setText(String.valueOf(movie.getYear()));
+                            categoryEdit= (ArrayList<com.example.btlon_movie.Model.Category>) movie.getCategory();
+                            countryEdit= (ArrayList<com.example.btlon_movie.Model.Country>) movie.getCountry();
+                            new DownloadImageTask(imageThumbnail).execute(movie.getThumbnail());
+                            new DownloadImageTask(imageBackground).execute(movie.getImage());
+                            thumbnailUri=Uri.parse(movie.getThumbnail());
+                            backgroundUri=Uri.parse(movie.getImage());
+                            LinkBackground=movie.getImage();
+                            LinkThumbnail=movie.getThumbnail();
                         }
-                        Link.setText(movie.getLink());
-                        Year.setText(String.valueOf(movie.getYear()));
-                        categoryEdit= (ArrayList<com.example.btlon_movie.Model.Category>) movie.getCategory();
-                        countryEdit= (ArrayList<com.example.btlon_movie.Model.Country>) movie.getCountry();
-                        new DownloadImageTask(imageThumbnail).execute(movie.getThumbnail());
-                        new DownloadImageTask(imageBackground).execute(movie.getImage());
-                        thumbnailUri=Uri.parse(movie.getThumbnail());
-                        backgroundUri=Uri.parse(movie.getImage());
-                        LinkBackground=movie.getImage();
-                        LinkThumbnail=movie.getThumbnail();
+
                         BtnAdd.setText("Cập nhật");
                     }
                 }

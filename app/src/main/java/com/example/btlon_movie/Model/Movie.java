@@ -120,7 +120,22 @@ public class Movie {
     public void setYear(int year) {
         Year = year;
     }
-//    public String getString()
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "ID=" + ID +
+                ", Name='" + Name + '\'' +
+                ", Image='" + Image + '\'' +
+                ", Description='" + Description + '\'' +
+                ", thumbnail='" + thumbnail + '\'' +
+                ", language='" + language + '\'' +
+                ", rating='" + rating + '\'' +
+                ", Link='" + Link + '\'' +
+                ", Year=" + Year +
+                '}';
+    }
+    //    public String getString()
 //    {
 //        String a="";
 //        for (Category item: Category
