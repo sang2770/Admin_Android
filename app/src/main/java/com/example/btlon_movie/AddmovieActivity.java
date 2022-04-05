@@ -304,7 +304,7 @@ public class AddmovieActivity extends AppCompatActivity {
         Name = findViewById(R.id.Name);
         imageThumbnail = findViewById(R.id.imageThumbnail);
         Description = findViewById(R.id.Description);
-        imageBackground = findViewById(R.id.imageBackgrounc);
+        imageBackground = findViewById(R.id.imageBackground);
         language = findViewById(R.id.Language);
         rating = findViewById(R.id.Rating);
         Link = findViewById(R.id.Link);

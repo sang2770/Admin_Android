@@ -231,7 +231,7 @@
                             android:text="Chọn ảnh nền:"/>
 
                         <ImageView
-                            android:id="@+id/imageBackgrounc"
+                            android:id="@+id/imageBackground"
                             android:layout_marginTop="5dp"
                             android:layout_width="100dp"
                             android:layout_height="100dp"

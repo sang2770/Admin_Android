@@ -101,35 +101,15 @@ public class MainActivity extends AppCompatActivity {
     private void getListdata(String keys,String child){
         database=FirebaseDatabase.getInstance();
         myref=database.getReference();
-
-//        ArrayList<Category> DScategory=new ArrayList<>();
-//        ArrayList<Country> DScountry=new ArrayList<>();
         myref.child(child).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                Log.d("length",snapshot.getChildrenCount()+"" );
                 for(DataSnapshot sanp:snapshot.getChildren()){
                     if(child=="movie"){
                         Movie movie=sanp.getValue(Movie.class);
-
-//                        DScategory.clear();
-//                        DScountry.clear();
-//                        for(int i=1;i<=sanp.child("Category").getChildrenCount();i++){
-//                            Category category=sanp.child("Category/"+i).getValue(Category.class);
-//                            DScategory.add(category);
-//                        }
-//                        for(int i=1;i<=sanp.child("Country").getChildrenCount();i++){
-//                            Country country=sanp.child("Country/"+i).getValue(Country.class);
-//                            DScountry.add(country);
-//                        }
-//                        movie.setCategory(DScategory);
-//                        movie.setCountry(DScountry);
-//                        Log.d("movie", movie.getString());
-
                         if(keys==""){
                             arrLstMovie.add(movie);
-                            //Toast.makeText(MainActivity.this, movie.getID()+"", Toast.LENGTH_SHORT).show();
-
                         }
                         else{
                             for(int i=0;i<sanp.child("category").getChildrenCount();i++){
