@@ -99,7 +99,7 @@ public class LstMovieAdapter extends BaseAdapter {
 
                             DatabaseReference myref = database.getReference();
                             Log.d("delete", String.valueOf(data.get(i).getID()));
-                            myref.child("Movie/"+data.get(i).getID()).removeValue(new DatabaseReference.CompletionListener() {
+                            myref.child("movie/"+data.get(i).getID()).removeValue(new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                                     Toast.makeText(context, "Bạn đã xóa thành công", Toast.LENGTH_SHORT).show();
