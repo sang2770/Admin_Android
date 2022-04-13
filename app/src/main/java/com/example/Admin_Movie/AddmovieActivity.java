@@ -275,7 +275,10 @@ public class AddmovieActivity extends AppCompatActivity {
                     );
                     mDatabase.child("movie").child(checkUpdate?String.valueOf(String.valueOf(Id)):String.valueOf(SizeID+1)).setValue(movie);
                     progressDialog.dismiss();
-                    ResetText();
+                    if(!checkUpdate)
+                    {
+                        ResetText();
+                    }
                     Toast.makeText(AddmovieActivity.this, checkUpdate?"Cập nhật thành công":"Thêm thành công", Toast.LENGTH_SHORT).show();
                 }
             }
