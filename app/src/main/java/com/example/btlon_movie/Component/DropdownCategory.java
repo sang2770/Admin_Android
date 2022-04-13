@@ -17,11 +17,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DropdownCategory {
+    //  View hiện dữ liệu
     TextView TxtSelect;
+    // Mảng đánh dấu checked
     boolean[] checkSelected;
+    // Kết quả chọn
     ArrayList<Category> ResultSelect;
+    // Danh sách lựa chọn
     ArrayList<Category> listItem;
+    // Ngữ cảnh
     Context context;
+    // Tiêu đề
     String Title;
     public DropdownCategory(TextView txtSelect,
                             ArrayList<Category> listItem,
@@ -31,6 +37,7 @@ public class DropdownCategory {
         ResultSelect = new ArrayList<Category>();
         this.listItem = listItem;
         this.checkSelected = new boolean[listItem.size()];
+        //check sửa dữ liệu
         String selectCategory="";
         if(listSelected!=null)
         {
@@ -44,10 +51,13 @@ public class DropdownCategory {
                 }
             }
         }
+        // Nếu chỉnh sửa
         TxtSelect.setText(selectCategory);
+        // Tham chiếu ngữ cảnh
         this.context = context;
         this.Title = Title;
     }
+    // Kiểm tra sự tồn tại của item
     public int checkInArrayList(int Id )
     {
         for (int i=0;i<listItem.size();i++) {
@@ -58,6 +68,7 @@ public class DropdownCategory {
         }
         return -1;
     }
+    // Lấy kết quả
     public ArrayList<Category> getResultSelect() {
         return ResultSelect;
     }
@@ -78,8 +89,9 @@ public class DropdownCategory {
                 for (int i = 0; i < listItem.size(); i++) {
                     Displayvalue[i] = listItem.get(i).getName();
                 }
+                // Không thể đóng bằng phím back
                 builder.setCancelable(false);
-
+                // Cho phép lựa chọn nhiều
                 builder.setMultiChoiceItems(Displayvalue, checkSelected, new DialogInterface.OnMultiChoiceClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i, boolean b) {
@@ -114,6 +126,7 @@ public class DropdownCategory {
             }
         });
     }
+    // Reset lại các lựa chọn
     public void Reset()
     {
         ResultSelect.clear();

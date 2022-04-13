@@ -45,17 +45,21 @@ import java.util.List;
 import java.util.UUID;
 
 public class AddmovieActivity extends AppCompatActivity {
+    // Component
     TextView selectCategory, selectCountry;
     TextInputEditText Name, Description, language, Link, Year;
     ImageView imageThumbnail, imageBackground;
-    Uri thumbnailUri, backgroundUri;
-    String LinkThumbnail, LinkBackground;
     CheckBox rating;
     BottomNavigationView menu;
     private DatabaseReference mDatabase;
     ArrayList<Category> ListCategory;
     ArrayList<Country> ListCountry;
     Button BtnAdd;
+    // Link ảnh
+    Uri thumbnailUri, backgroundUri;
+    String LinkThumbnail, LinkBackground;
+
+    // Lay Id tiep theo
     int SizeID;
     DropdownCategory Category;
     DropdownCountry Country;
@@ -81,7 +85,7 @@ public class AddmovieActivity extends AppCompatActivity {
     private void InitEvent() {
         //get List Category
         ListCategory = new ArrayList<Category>();
-
+        // Lấy dữ liệu category gán cho listbox
         mDatabase.child("category").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -118,7 +122,7 @@ public class AddmovieActivity extends AppCompatActivity {
                 Toast.makeText(AddmovieActivity.this, "Lấy dữ liệu không thành công", Toast.LENGTH_SHORT).show();
             }
         });
-        // chon anh
+        // chon anh chính
         imageThumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,6 +132,7 @@ public class AddmovieActivity extends AppCompatActivity {
                 startActivityForResult(gallery, 100);
             }
         });
+        // chon ảnh nền
         imageBackground.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,6 +175,7 @@ public class AddmovieActivity extends AppCompatActivity {
     private  interface FirebaseCallBack{
         void onCallBack();
     }
+    // check nhấn vào Ảnh thumbnail
     private void uploadThumbnail()
     {
         if(checkThumbnail)
@@ -209,6 +215,8 @@ public class AddmovieActivity extends AppCompatActivity {
             uploadBackground();
         }
     }
+    // check nhấn vào Ảnh background
+
     private void uploadBackground()
     {
         Log.d("checkBackground","Begin");
@@ -243,6 +251,7 @@ public class AddmovieActivity extends AppCompatActivity {
             uploadMovie();
         }
     }
+    // Thêm phim
     private void uploadMovie()
     {
         mDatabase.child("movie").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
@@ -282,6 +291,7 @@ public class AddmovieActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        // thumbnails
         if(requestCode==100 && resultCode==RESULT_OK
                 && data !=null && data.getData() != null)
         {
@@ -358,6 +368,8 @@ public class AddmovieActivity extends AppCompatActivity {
                             backgroundUri=Uri.parse(movie.getImage());
                             LinkBackground=movie.getImage();
                             LinkThumbnail=movie.getThumbnail();
+                        }else{
+                            Toast.makeText(AddmovieActivity.this, "Lấy dữ liệu không thành công", Toast.LENGTH_SHORT).show();
                         }
 
                         BtnAdd.setText("Cập nhật");
