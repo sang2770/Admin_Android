@@ -1,20 +1,15 @@
-package com.example.btlon_movie.Component;
+package com.example.Admin_Movie.Component;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
-import com.example.btlon_movie.Model.Category;
+import com.example.Admin_Movie.Model.Category;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class DropdownCategory {
     //  View hiện dữ liệu

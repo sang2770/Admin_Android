@@ -1,4 +1,4 @@
-package com.example.btlon_movie.Model;
+package com.example.Admin_Movie.Model;
 
 public class Category {
     private int ID;

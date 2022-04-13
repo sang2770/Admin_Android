@@ -1,4 +1,4 @@
-package com.example.btlon_movie;
+package com.example.Admin_Movie;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

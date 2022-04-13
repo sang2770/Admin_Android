@@ -1,4 +1,4 @@
-package com.example.btlon_movie.Model;
+package com.example.Admin_Movie.Model;
 
 import java.util.ArrayList;
 import java.util.List;

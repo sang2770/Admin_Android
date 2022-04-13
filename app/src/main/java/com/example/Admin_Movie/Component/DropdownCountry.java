@@ -1,19 +1,15 @@
-package com.example.btlon_movie.Component;
+package com.example.Admin_Movie.Component;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
-import com.example.btlon_movie.Model.Category;
-import com.example.btlon_movie.Model.Country;
+import com.example.Admin_Movie.Model.Country;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class DropdownCountry {
     TextView TxtSelect;

@@ -1,4 +1,4 @@
-package com.example.btlon_movie.Model;
+package com.example.Admin_Movie.Model;
 
 public class User {
     private String ID;

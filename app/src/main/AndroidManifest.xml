@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.btlon_movie">
+    package="com.example.Admin_Movie">
 
     <application
         android:allowBackup="true"
@@ -10,13 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AdminMovie">
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.Admin_Movie.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".AddmovieActivity"
+            android:name="com.example.Admin_Movie.AddmovieActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashActivity"
+            android:name="com.example.Admin_Movie.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.Admin_Movie.MainActivity"
             android:exported="false" />
     </application>
 

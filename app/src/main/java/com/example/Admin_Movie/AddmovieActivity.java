@@ -1,4 +1,4 @@
-package com.example.btlon_movie;
+package com.example.Admin_Movie;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,7 +8,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,11 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.btlon_movie.Component.DropdownCategory;
-import com.example.btlon_movie.Component.DropdownCountry;
-import com.example.btlon_movie.Model.Category;
-import com.example.btlon_movie.Model.Country;
-import com.example.btlon_movie.Model.Movie;
+import com.example.Admin_Movie.Component.DropdownCategory;
+import com.example.Admin_Movie.Component.DropdownCountry;
+import com.example.Admin_Movie.Model.Category;
+import com.example.Admin_Movie.Model.Country;
+import com.example.Admin_Movie.Model.Movie;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,12 +35,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public class AddmovieActivity extends AppCompatActivity {
@@ -360,8 +357,8 @@ public class AddmovieActivity extends AppCompatActivity {
                             }
                             Link.setText(movie.getLink());
                             Year.setText(String.valueOf(movie.getYear()));
-                            categoryEdit= (ArrayList<com.example.btlon_movie.Model.Category>) movie.getCategory();
-                            countryEdit= (ArrayList<com.example.btlon_movie.Model.Country>) movie.getCountry();
+                            categoryEdit= (ArrayList<com.example.Admin_Movie.Model.Category>) movie.getCategory();
+                            countryEdit= (ArrayList<com.example.Admin_Movie.Model.Country>) movie.getCountry();
                             new DownloadImageTask(imageThumbnail).execute(movie.getThumbnail());
                             new DownloadImageTask(imageBackground).execute(movie.getImage());
                             thumbnailUri=Uri.parse(movie.getThumbnail());
